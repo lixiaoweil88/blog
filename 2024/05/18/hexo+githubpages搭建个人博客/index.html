@@ -13,13 +13,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="个人博客搭建可以借助github pages搭建服务，hexo搭建页面 设置github pages 登录github，新建仓库，注意仓库名字为username.github.io     构建和部署选择从分支发布（24年06.30后要用github actions 发布）     Custom domain应该是可以设置域名，本次未处理  然后建好后测试仓库是否可用：https:&#x2F;&#x2F;lixiao">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/.com//image-20240518143754573.png">
-<meta property="og:image" content="http://example.com/.com//image-20240518151759700.png">
+<meta property="og:image" content="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image-20240518143754573.png">
+<meta property="og:image" content="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image-20240518143921530.png">
+<meta property="og:image" content="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image-20240518154212666.png">
 <meta property="article:published_time" content="2024-05-18T07:04:41.053Z">
-<meta property="article:modified_time" content="2024-05-18T07:18:05.307Z">
+<meta property="article:modified_time" content="2024-05-18T07:43:14.547Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/.com//image-20240518143754573.png">
+<meta name="twitter:image" content="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image-20240518143754573.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -90,11 +91,11 @@
 <h3 id="设置github-pages"><a href="#设置github-pages" class="headerlink" title="设置github pages"></a>设置github pages</h3><ol>
 <li>登录github，新建仓库，注意仓库名字为username.github.io</li>
 </ol>
-<p> <img src="/.com//image-20240518143754573.png" alt="image-20240518143754573"></p>
+<p> <img src="./image-20240518143754573.png" alt="image-20240518143754573"></p>
 <ol start="2">
 <li>构建和部署选择从分支发布（24年06.30后要用github actions 发布）</li>
 </ol>
-<p> <img src="/.com//image-20240518151759700.png" alt="image-20240518151759700"></p>
+<p> <img src="./image-20240518143921530.png" alt="image-20240518143921530"></p>
 <ol start="3">
 <li>Custom domain应该是可以设置域名，本次未处理</li>
 </ol>
@@ -125,15 +126,42 @@
 </blockquote>
 </li>
 </ol>
-<h3 id="写文章并发布到github"><a href="#写文章并发布到github" class="headerlink" title="写文章并发布到github"></a>写文章并发布到github</h3><p>hexo new “文章” 会在 博客目录source\_posts 下创建文章.md</p>
+<h3 id="写文章并发布到github"><a href="#写文章并发布到github" class="headerlink" title="写文章并发布到github"></a>写文章并发布到github</h3><h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>hexo new “文章” 会在 博客目录source\_posts 下创建文章.md</p>
 <p>hexo g 生成页面</p>
 <p>hexo s 本地预览<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
 <p>hexo g –d 推送到远程</p>
+<h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><ol>
+<li><p>安装插件</p>
+<blockquote>
+<p>npm install hexo-asset-image –save</p>
+</blockquote>
+</li>
+<li><p><strong>进入博客根目录找到node_modules-&gt; hexo-asset-image-&gt; index.js</strong></p>
+<blockquote>
+<p>$(this).attr(‘src’, config.root + link + src); </p>
+<p>修改为</p>
+<p>$(this).attr(‘src’, ‘.&#x2F;‘+ src);</p>
+</blockquote>
+</li>
+<li><p>在_config.yml配置文件将post_asset_folder:false改成true，hexo new “blog name”的时候会同时生成同名文件夹用来存放资源(将所有图片放在这个文件夹内)</p>
+</li>
+<li><p>配置typora 图片保存位置</p>
+<p><img src="./image-20240518154212666.png" alt="image-20240518154212666"></p>
+</li>
+<li><p>本地预览和推送</p>
+<blockquote>
+<p>hexo clean #修改配置文件后执行</p>
+<p>hexo g</p>
+<p>hexo s</p>
+<p>hexo g –d</p>
+</blockquote>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clwbrk0tx0000r4v3b46p82yr" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/18/hexo+githubpages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clwbspkr800018gv335c08vcj" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
